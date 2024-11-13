@@ -1,0 +1,22 @@
+{% extends 'navbar.html' %}
+{% block content %}
+{% load static %}
+
+{% if blogposts %}
+
+{% for post in blogposts %}
+  <h2>{{ post.name }}</h2>
+  <p>{{ post.description }}</p>
+  {% if post.attachment %}
+    <img src="{{ post.attachment.url }}" alt="{{ post.name }}" style="width: 400px;height: 230px;" />
+  {% endif %}
+  <a href="{% url 'updateblog' post.id %}">Edit</a>
+  <p>{{ post.created_date }}</p>
+{% endfor %}
+
+{% else %}
+No blogs has been published
+{% endif %}
+
+
+{% endblock %}
